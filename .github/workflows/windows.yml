@@ -15,7 +15,7 @@ jobs:
       - name: 
         run: | 
           xcopy target\src\Release release\ /s /y
-          xcopy src\slice_by_8 release\slice_by_8\ /s /y
+          xcopy src\cityhash release\cityhash\ /s /y
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
