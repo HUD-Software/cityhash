@@ -28,7 +28,7 @@ jobs:
       - name: Release
         run: |
           mkdir -p release
-          cp -R target/test/test_cityhash release -i
+          cp -R target/test/test_city_hash release -i
           cp -R target/src/*.a release -i
           cp -R src/cityhash release/cityhash -i
       - name: Upload artifacts
