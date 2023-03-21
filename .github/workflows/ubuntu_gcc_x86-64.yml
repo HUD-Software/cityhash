@@ -22,15 +22,15 @@ jobs:
         uses: dorny/test-reporter@v1
         if: success() || failure()
         with:
-          name: Ubuntu Core Test Report
-          path: target/test/test_core_report.xml
+          name: Ubuntu CityHash Test Report
+          path: target/test/test_*_report.xml
           reporter: java-junit
       - name: Release
         run: |
           mkdir -p release
-          cp -R target/test/test_core release -i
+          cp -R target/test/test_cityhash release -i
           cp -R target/src/*.a release -i
-          cp -R src/core release/core -i
+          cp -R src/cityhash release/cityhash -i
       - name: Upload artifacts
         uses: actions/upload-artifact@v3.1.1
         with:
