@@ -7,6 +7,15 @@ project(${lib_name}
         LANGUAGES CXX
 )
 
+
+if(COVERAGE)
+include(.cmake/coverage.cmake)
+endif()
+
+if(SANITIZER)
+include(.cmake/sanitizer.cmake)
+endif()
+
 add_subdirectory(src)
 enable_testing()
 add_subdirectory(test)
