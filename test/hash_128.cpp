@@ -4165,8 +4165,6 @@ GTEST_TEST(city_hash, hash_crc_128_with_seed)
         key[index] = index;
         GTEST_ASSERT_EQ(CityHashCrc128WithSeed(key, index, {index, 0}), CITY_HASH_CRC_128_WITH_SEED_RESULT[index]);
     }
-    int x[100];
-    x[100] = 5; // Boom!
 }
 
 GTEST_TEST(city_hash, hash_crc_128_from_str_lipsum)
