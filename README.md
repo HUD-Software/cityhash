@@ -36,6 +36,9 @@
 [![codeql](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/codeQL.yml?label=CodeQL%20Quality&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/codeQL.yml)
 [![codacy](https://img.shields.io/codacy/grade/8014adeaff854f95b7688b8bed741964?label=Codacy%20Quality&logo=Codacy&logoColor=lightgrey&style=flat-square)](https://app.codacy.com/gh/HUD-Software/cityhash/)
 
+***Sanitization***
+
+// TODO
 </br>
 
 # Description
@@ -51,7 +54,7 @@ CityHash-sys is tested on little-endian but should work on big-endian architectu
 
 **_`cityhash` target_**
 
-This is the library target. It produce a library called `cityhash` that can be used with the interfaces describes in `src/cityhash` directory.
+This is the library target. It produce a static library called `cityhash` that can be used with the interfaces describes in `src/cityhash` directory.
 
 **_`cityhash_test` target_**
 
@@ -80,7 +83,9 @@ include(FetchContent)
 **_32-bit hash_**
 
 ```C++
-// 	Retrieves a 32-bit hash of a slice of bytes.
+#include <cityhash/city.h>
+
+// Retrieves a 32-bit hash of a slice of bytes.
 const char* LIPSUM = "...";
 uint32 hash_result = CityHash32(LIPSUM, strlen(LIPSUM)); // uint64 CityHash32(const char *buf, size_t len);
 ```
@@ -88,12 +93,16 @@ uint32 hash_result = CityHash32(LIPSUM, strlen(LIPSUM)); // uint64 CityHash32(co
 **_64-bit hash_**
 
 ```C++
-// 	Retrieves a 64-bit hash of a slice of bytes.
+#include <cityhash/city.h>
+
+// Retrieves a 64-bit hash of a slice of bytes.
 const char* LIPSUM = "...";
 uint64 hash_result = CityHash64(LIPSUM, strlen(LIPSUM)); // uint64 CityHash64(const char *buf, size_t len);
 ```
 
 ```C++
+#include <cityhash/city.h>
+
 // Retrieves a 64-bit hash of a slice of bytes, a seed is also hashed into the result.
 const char* LIPSUM = "...";
 uint64 seed = 123;
@@ -101,6 +110,8 @@ uint64 hash_result = CityHash64WithSeed(LIPSUM, strlen(LIPSUM), seed); // uint64
 ```
 
 ```C++
+#include <cityhash/city.h>
+
 // Retrieves a 64-bit hash of a slice of bytes, two seeds is also hashed into the result.
 const char* LIPSUM = "...";
 uint64 seed_1 = 123;
@@ -111,20 +122,26 @@ uint64 hash_result = CityHash64WithSeeds(LIPSUM, strlen(LIPSUM), seed_1, seed_2)
 **_128-bit hash_**
 
 ```C++
-// Retrieves a 64-bit hash of a slice of bytes, two seeds is also hashed into the result.
+#include <cityhash/city.h>
+
+// Retrieves a 128-bit hash of a slice of bytes.
 const char* LIPSUM = "...";
 uint128 hash_result = CityHash128(LIPSUM, strlen(LIPSUM)); // uint128 CityHash128(const char *s, size_t len);
 ```
 
 ```C++
-// Retrieves a 128-bit hash of a slice of bytes.
+#include <cityhash/city.h>
+
+// Retrieves a 128-bit hash of a slice of bytes, a seed is also hashed into the result.
 const char* LIPSUM = "...";
 uint128 seed = {low, high};
 uint128 hash_result = CityHash128WithSeed(LIPSUM, strlen(LIPSUM), seed); // uint128 CityHash128WithSeed(const char *s, size_t len, uint128 seed);
 ```
 
 ```C++
-// uint128 CityHashCrc128(const char *s, size_t len);
+#include <cityhash/city.h>
+
+// Retrieves the 64 bits of a 128 bits input.
 uint128 hash_128_bits = {low, high};
 uint64 hash_64_bits = Hash128to64(hash_128_bits); // uint64 Hash128to64(const uint128 &x);
 ```
@@ -149,12 +166,16 @@ If the buffer to hash is less than 900 bytes, `CityHashCrc128WithSeed` and `City
 **_128-bit hash with CRC-32 intrinsic_**
 
 ```C++
+#include <cityhash/citycrc.h>
+
 // Retrieves a 128-bit hash of a slice of bytes.
 const char* LIPSUM = "...";
 uint128 hash_result = CityHashCrc128(LIPSUM, strlen(LIPSUM)); // uint128 CityHashCrc128(const char *s, size_t len);
 ```
 
 ```C++
+#include <cityhash/citycrc.h>
+
 // Retrieves a 128-bit hash of a slice of bytes, a seed is also hashed into the result.
 const char* LIPSUM = "...";
 uint128 seed = {low, high};
@@ -164,6 +185,8 @@ uint128 hash_result = CityHashCrc128WithSeed(LIPSUM, strlen(LIPSUM), seed); // u
 **_256-bit hash with CRC-32 intrinsic_**
 
 ```C++
+#include <cityhash/citycrc.h>
+
 // Retrieves a 256-bit hash fo a slice of bytes. The hash is a slice of u64 where [0..4] is [low..high] bits.
 uint64 result[4] = {0};
 CityHashCrc256(LIPSUM, strlen(LIPSUM), result); // void CityHashCrc256(const char *, size_t, uint64 *);

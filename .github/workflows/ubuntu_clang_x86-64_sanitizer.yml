@@ -1,11 +1,11 @@
-name: C++ Sanitizer
+name: Ubuntu clang x86-64 sanitizer
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  coverage_ubuntu:
+  sanitizer_ubuntu:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository

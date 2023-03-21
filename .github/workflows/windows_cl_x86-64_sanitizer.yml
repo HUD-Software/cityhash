@@ -1,11 +1,11 @@
-name: C++ Sanitizer
+name: Windows cl x86-64 sanitizer
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  sanitizer-analysis:
+  sanitizer-windows:
     runs-on: windows-latest
     steps:
       - name: Checkout repository
