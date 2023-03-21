@@ -48,10 +48,6 @@ target_compile_definitions(
 	PRIVATE
 	_HAS_EXCEPTIONS=0
 	_CRT_SECURE_NO_WARNINGS
-	_UNICODE
-	UNICODE
-	HD_ABORT_ON_ASSERT
-	HD_GLOBAL_NAMESPACE_TYPES
 	#Don't use TEST() ans ASSERT_*() macro from google_test which is a too generic name
 	GTEST_DONT_DEFINE_TEST=1
 	GTEST_DONT_DEFINE_ASSERT_TRUE=1

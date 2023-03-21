@@ -1,0 +1,16 @@
+name: C++ Sanitizer
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  coverage_ubuntu:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Generate visual Studio solution
+        run: cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++ -Btarget -G "Unix Makefiles" -DSANITIZER:BOOL=TRUE
+      - name: Build
+        run: cmake.exe --build target --config RelWithDebInfo
