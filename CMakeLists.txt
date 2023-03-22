@@ -8,12 +8,15 @@ project(${lib_name}
 )
 
 
+
 if(COVERAGE)
-include(.cmake/coverage.cmake)
+file(DOWNLOAD https://hud-software.github.io/cmake/coverage.cmake ${CMAKE_BINARY_DIR}/coverage.cmake)
+include(${CMAKE_BINARY_DIR}/coverage.cmake)
 endif()
 
 if(SANITIZER)
-include(.cmake/sanitizer.cmake)
+file(DOWNLOAD https://hud-software.github.io/cmake/sanitizer.cmake ${CMAKE_BINARY_DIR}/sanitizer.cmake)
+include(${CMAKE_BINARY_DIR}/sanitizer.cmake)
 endif()
 
 add_subdirectory(src)
