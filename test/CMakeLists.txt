@@ -82,7 +82,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(google_test)
 
 target_link_libraries( ${test_project_name} PRIVATE gtest )
-target_compile_definitions(${test_project_name} PRIVATE _DISABLE_VECTOR_ANNOTATION)
+
 
 # Add the executable test
 add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)

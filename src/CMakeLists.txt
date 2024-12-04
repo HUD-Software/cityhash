@@ -17,3 +17,5 @@ else()
 	target_compile_options( ${lib_name} PRIVATE -msse4.2 -std=c++20)
 endif()
 
+target_compile_definitions(${lib_name} PRIVATE _DISABLE_VECTOR_ANNOTATION)
+
