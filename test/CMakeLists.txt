@@ -63,24 +63,32 @@ target_compile_definitions(
 target_link_libraries(${test_project_name} PRIVATE ${lib_name})
 
 # Add Google test dependency
-message("Fetching HUD-Software/google-test...")
+message("Fetching google-test...")
 include(FetchContent)
 FetchContent_Declare(
 	google_test 
-	GIT_REPOSITORY  https://github.com/HUD-Software/google-test.git
-	GIT_TAG         5306f1a0e51f6001c624588fafdb646bb377866c
+	GIT_REPOSITORY  https://github.com/google/googletest.git
+	GIT_TAG         v1.13.0
 )
-FetchContent_MakeAvailable(google_test)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+set(BUILD_GTEST ON CACHE BOOL "" FORCE)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCED)
+set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+set(gtest_build_samples OFF CACHE BOOL "" FORCE)
+set(gtest_build_tests OFF CACHE BOOL "" FORCE)
 
+FetchContent_MakeAvailable(google_test)
 target_link_libraries( ${test_project_name} PRIVATE gtest )
 
 # Add the executable test
 add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
 
 if(SANITIZER)
+	include(../sanitizer.cmake)
 	enable_sanitizer(${test_project_name} ${lib_name})
 endif()
 
 if(COVERAGE)
-	enable_coverage(${test_project_name} ${lib_name})
+	include(../coverage.cmake)
+	enable_gcov_coverage(${test_project_name} ${lib_name})
 endif()

@@ -7,18 +7,6 @@ project(${lib_name}
         LANGUAGES CXX
 )
 
-
-
-if(COVERAGE)
-file(DOWNLOAD https://hud-software.github.io/cmake/coverage.cmake ${CMAKE_BINARY_DIR}/coverage.cmake)
-include(${CMAKE_BINARY_DIR}/coverage.cmake)
-endif()
-
-if(SANITIZER)
-file(DOWNLOAD https://hud-software.github.io/cmake/sanitizer.cmake ${CMAKE_BINARY_DIR}/sanitizer.cmake)
-include(${CMAKE_BINARY_DIR}/sanitizer.cmake)
-endif()
-
 add_subdirectory(src)
 enable_testing()
 add_subdirectory(test)
