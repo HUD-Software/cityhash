@@ -22,13 +22,14 @@
 
 ***Windows build and test***
 
-[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64.yml?label=CL%20compiler%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/windows_cl_x86-64.yml)
-[![clang-cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_clang_x86-64.yml?label=Clang-cl%20compiler%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_clang_x86-64.yml)
+[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64.yml?label=CL%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/windows_cl_x86-64.yml)
+[![clang-cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_clang_x86-64.yml?label=Clang-cl%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_clang_x86-64.yml)
+[![mingw-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_mingw_64.yml?label=MinGW%2064&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_mingw_64.yml)
 
 ***Ubuntu build and test***
 
-[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64.yml?label=Clang%20compiler%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang_x86-64.yml)
-[![gcc_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_gcc_x86-64.yml?label=GCC%20compiler%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_gcc_x86-64.yml)
+[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64.yml?label=Clang%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang_x86-64.yml)
+[![gcc_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_gcc_x86-64.yml?label=GCC%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_gcc_x86-64.yml)
 
 ***Quality***
 
