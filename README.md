@@ -38,8 +38,8 @@
 
 ***Sanitization***
 
-[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64_sanitizer.yml?label=CL%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/windows_cl_x86-64_sanitizer.yml)
-[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64_sanitizer.yml?label=Clang%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/ubuntu_clang_x86-64_sanitizer.yml)
+[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64_sanitizer.yml?label=CL%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_cl_x86-64_sanitizer.yml)
+[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64_sanitizer.yml?label=Clang%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang_x86-64_sanitizer.yml)
 
 </br>
 
