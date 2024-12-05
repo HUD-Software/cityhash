@@ -315,8 +315,8 @@ if(MSVC)
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	# Disable compiler batching to fix a clang-cl bug when activate --coverage
 	# See: https://developercommunity.visualstudio.com/t/Clang-cl---coverage-option-create-gcno-w/10253777
-	set_property(TARGET test_core PROPERTY VS_NO_COMPILE_BATCHING ON)
-	set_property(TARGET core PROPERTY VS_NO_COMPILE_BATCHING ON)
+	set_property(TARGET ${project_name} PROPERTY VS_NO_COMPILE_BATCHING ON)
+	set_property(TARGET ${lib_name} PROPERTY VS_NO_COMPILE_BATCHING ON)
 
 	target_compile_options(${project_name} PRIVATE --coverage)
 	target_link_options(${project_name} PRIVATE --coverage)
@@ -378,8 +378,8 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	# # Disable compiler batching to fix a clang-cl bug when activate --coverage
 	# # See: https://developercommunity.visualstudio.com/t/Clang-cl---coverage-option-create-gcno-w/10253777
-	# set_property(TARGET test_core PROPERTY VS_NO_COMPILE_BATCHING ON)
-	# set_property(TARGET core PROPERTY VS_NO_COMPILE_BATCHING ON)
+	# set_property(TARGET ${project_name} PROPERTY VS_NO_COMPILE_BATCHING ON)
+	# set_property(TARGET ${lib_name} PROPERTY VS_NO_COMPILE_BATCHING ON)
 
 	target_compile_options(${project_name} PRIVATE --coverage)
 	target_link_options(${project_name} PRIVATE --coverage)
