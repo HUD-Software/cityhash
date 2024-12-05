@@ -20,28 +20,14 @@
 
 # Status
 
-***Windows build and test***
+| | |
+| --- | --- |
+| Windows build and test | [![msvc_2022_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_msvc_2022_x86-64.yml?label=MSVC%202022%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_msvc_2022_x86-64.yml) [![clang-cl_2022_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_clang_cl_2022_x86-64.yml?label=Clang-cl%202022%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_clang_cl_2022_x86-64.yml) [![mingw_64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_mingw_64.yml?label=MinGW%2064&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_mingw_64.yml) [![wasm](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_wasm.yml?label=WebAssembly&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_wasm.yml) |
+| Ubuntu build and test | [![clang_14_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang14_x86-64.yml?label=Clang%2014%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang14_x86-64.yml) [![gcc_12_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_gcc12_x86-64.yml?label=GCC%2012%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_gcc12_x86-64.yml) |
+| Sanitizer | [![MSVC](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_msvc_2022_x86-64.yml?label=MSVC%202022%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/sanitizer_msvc.yml) [![GCC](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/sanitizer_gcc12.yml?label=GCC%2012%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/sanitizer_gcc12.yml) [![Clang](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/sanitizer_clang14.yml?label=Clang%2014%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/sanitizer_clang14.yml) |
+| Coverage | [![codecov](https://img.shields.io/codecov/c/github/hud-software/cityhash?label=Codecov&logo=Codecov&logoColor=lightgrey&style=flat-square)](https://app.codecov.io/gh/HUD-Software/cityhash) |
+| Quality | [![codeql](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/codeQL.yml?label=CodeQL%20Quality&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/codeQL.yml) [![codacy](https://img.shields.io/codacy/grade/8014adeaff854f95b7688b8bed741964?label=Codacy%20Quality&logo=Codacy&logoColor=lightgrey&style=flat-square)](https://app.codacy.com/gh/HUD-Software/cityhash/) |
 
-[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64.yml?label=CL%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/windows_cl_x86-64.yml)
-[![clang-cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_clang_x86-64.yml?label=Clang-cl%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_clang_x86-64.yml)
-[![mingw-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_mingw_64.yml?label=MinGW%2064&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_mingw_64.yml)
-[![web-assembly](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_wasm.yml?label=WebAssembly&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_wasm.yml)
-
-***Ubuntu build and test***
-
-[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64.yml?label=Clang%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang_x86-64.yml)
-[![gcc_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_gcc_x86-64.yml?label=GCC%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_gcc_x86-64.yml)
-
-***Quality***
-
-[![codecov](https://img.shields.io/codecov/c/github/hud-software/cityhash?label=Codecov&logo=Codecov&logoColor=lightgrey&style=flat-square)](https://app.codecov.io/gh/HUD-Software/cityhash)
-[![codeql](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/codeQL.yml?label=CodeQL%20Quality&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/codeQL.yml)
-[![codacy](https://img.shields.io/codacy/grade/8014adeaff854f95b7688b8bed741964?label=Codacy%20Quality&logo=Codacy&logoColor=lightgrey&style=flat-square)](https://app.codacy.com/gh/HUD-Software/cityhash/)
-
-***Sanitization***
-
-[![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64_sanitizer.yml?label=CL%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_cl_x86-64_sanitizer.yml)
-[![clang_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/ubuntu_clang_x86-64_sanitizer.yml?label=Clang%20sanitizer%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/ubuntu_clang_x86-64_sanitizer.yml)
 
 </br>
 

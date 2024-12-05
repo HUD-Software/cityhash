@@ -17,11 +17,9 @@ jobs:
       - name: Generate
         run: cmake.exe --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH="gcc.exe" -DCMAKE_CXX_COMPILER:FILEPATH="g++.exe" -Btarget -G "MinGW Makefiles"
       - name: Build
-        run: cmake --build target --config Release 
+        run: cmake --build target
       - name: Test
-        run: |
-          cd target
-          ctest -j10 -C Release -T test --output-on-failure
+        run: ctest --test-dir target -j10 -C Release -T test --output-on-failure
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
