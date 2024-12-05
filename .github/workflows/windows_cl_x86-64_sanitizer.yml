@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Generate visual Studio solution
+      - name: Generate
         run: cmake.exe --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -Btarget -G "Visual Studio 17 2022" -T host=x64 -A x64 -DSANITIZER:BOOL=TRUE
       - name: Build
         run: cmake.exe --build target --config RelWithDebInfo
