@@ -14,7 +14,8 @@ function(enable_sanitizer project_name lib_name)
 			# Disable <vector> ASAN Linker verification 
 			# https://learn.microsoft.com/en-us/answers/questions/864574/enabling-address-sanitizer-results-in-error-lnk203
 			target_compile_definitions(${project_name} PRIVATE _DISABLE_VECTOR_ANNOTATION)
-
+			target_compile_definitions(${project_name} PRIVATE _DISABLE_STRING_ANNOTATION)
+			
 			add_custom_command(TARGET ${project_name} POST_BUILD 
 				COMMAND Echo "Copy ${CMAKE_CXX_COMPILER_PATH}/clang_rt.asan_dbg_dynamic-x86_64.dll to $<TARGET_FILE_DIR:${project_name}>"
 				COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CXX_COMPILER_PATH}/clang_rt.asan_dbg_dynamic-x86_64.dll $<TARGET_FILE_DIR:${project_name}>
