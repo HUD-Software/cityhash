@@ -25,10 +25,12 @@ set_target_properties(${test_project_name}
 )
 
 if(MSVC)
-	target_compile_options( ${test_project_name} PRIVATE /Zc:__cplusplus /std:c++20 /bigobj /permissive- /EHsc /utf-8 /arch:AVX2)
-	target_compile_definitions(${test_project_name} PRIVATE __SSE4_2__)
+	target_compile_options( ${lib_name} PRIVATE /Zc:__cplusplus /std:c++20 /bigobj /permissive- /EHsc /utf-8 /arch:AVX2)
+	target_compile_definitions(${lib_name} PRIVATE __SSE4_2__)
+elseif(EMSCRIPTEN)
+	target_compile_options( ${lib_name} PRIVATE -msse4.2 -msimd128 -std=c++20)
 else()
-	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -std=c++20)
+ 	target_compile_options( ${lib_name} PRIVATE -msse4.2 -std=c++20)
 endif()
 
 target_precompile_headers(${test_project_name} PRIVATE precompiled.h)
@@ -70,9 +72,9 @@ FetchContent_Declare(
 	GIT_REPOSITORY  https://github.com/google/googletest.git
 	GIT_TAG         v1.13.0
 )
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+# set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCED)
 set(BUILD_GTEST ON CACHE BOOL "" FORCE)
-set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCED)
 set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
 set(gtest_build_samples OFF CACHE BOOL "" FORCE)
 set(gtest_build_tests OFF CACHE BOOL "" FORCE)

@@ -545,7 +545,10 @@ uint128 CityHash128(const char *s, size_t len)
     return len >= 16 ? CityHash128WithSeed(s + 16, len - 16, uint128(Fetch64(s), Fetch64(s + 8) + k0)) : CityHash128WithSeed(s, len, uint128(k0, k1));
 }
 
-#ifdef __SSE4_2__
+/*
+    _mm_crc32_u64 is not available in WASM (https://emscripten.org/docs/porting/simd.html)
+*/
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__)
     #include <cityhash/citycrc.h>
     #include <nmmintrin.h>
 

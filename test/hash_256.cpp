@@ -1,3 +1,5 @@
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__)
+
 constexpr uint64 CITY_HASH_CRC_128_RESULTS[256][4] = {
     {
      0x95162F24E6A5F930, 0x6808BDF4F1EB06E0,
@@ -1062,3 +1064,5 @@ GTEST_TEST(city_hash, hash_crc_256_from_str_lipsum)
     GTEST_ASSERT_EQ(result[2], expected_result[2]);
     GTEST_ASSERT_EQ(result[3], expected_result[3]);
 }
+
+#endif

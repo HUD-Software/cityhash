@@ -1,3 +1,5 @@
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__)
+
 constexpr uint128 CITY_HASH_128_RESULTS[1024] = {
     {0x3DF09DFC64C09A2B, 0x3CB540C392E51E29},
     {0x4E790CF9D65D69F9, 0xEC44F6870F0C779A},
@@ -4171,3 +4173,5 @@ GTEST_TEST(city_hash, hash_crc_128_from_str_lipsum)
 {
     GTEST_ASSERT_EQ(CityHashCrc128(LIPSUM, strlen(LIPSUM)), uint128(0x8326FD07983BD576, 0x9C5514CDF7881DDB));
 }
+
+#endif

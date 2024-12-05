@@ -25,6 +25,7 @@
 [![cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_cl_x86-64.yml?label=CL%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/core/actions/workflows/windows_cl_x86-64.yml)
 [![clang-cl_x86-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_clang_x86-64.yml?label=Clang-cl%20x86-64&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_clang_x86-64.yml)
 [![mingw-64](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_mingw_64.yml?label=MinGW%2064&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_mingw_64.yml)
+[![web-assembly](https://img.shields.io/github/actions/workflow/status/hud-software/cityhash/windows_wasm.yml?label=WebAssembly&logo=C%2B%2B&logoColor=lightgrey&style=flat-square)](https://github.com/HUD-Software/cityhash/actions/workflows/windows_wasm.yml)
 
 ***Ubuntu build and test***
 
