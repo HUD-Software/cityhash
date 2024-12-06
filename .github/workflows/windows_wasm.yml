@@ -19,7 +19,7 @@ jobs:
           git clone https://github.com/emscripten-core/emsdk.git
           cd emsdk
           .\emsdk.bat install latest
-          .\emsdk.bat activate latest --permanent
+          .\emsdk.bat activate latest --system
           .\emsdk_env.bat
       - name: Generate
         run: |
