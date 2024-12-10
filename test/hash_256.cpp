@@ -1032,7 +1032,8 @@ GTEST_TEST(city_hash, hash_crc_256_from_null_ptr)
     constexpr uint64 expected_result[4] = {0x95162F24E6A5F930, 0x6808BDF4F1EB06E0, 0xB3B1F3A67B624D82, 0xC9A62F12BD4CD80B};
 
     uint64 result[4] = {0};
-    CityHashCrc256(nullptr, 0, result);
+    char s {0};
+    CityHashCrc256(&s, 0, result);
     GTEST_ASSERT_EQ(result[0], expected_result[0]);
     GTEST_ASSERT_EQ(result[1], expected_result[1]);
     GTEST_ASSERT_EQ(result[2], expected_result[2]);
