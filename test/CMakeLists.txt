@@ -84,11 +84,7 @@ target_link_libraries( ${test_project_name} PRIVATE gtest )
 #add_custom_command(TARGET ${test_project_name} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:gtest> $<TARGET_FILE_DIR:${test_project_name}>)
 
 # Add the executable test
-if(EMSCRIPTEN)
-add_test(NAME  ${lib_name} COMMAND emrun.bat --no_browser --port 8080 ${CMAKE_BINARY_DIR}/votre_fichier.html)
-else()
 add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
-endif()
 
 if(SANITIZER)
 	include(../sanitizer.cmake)
