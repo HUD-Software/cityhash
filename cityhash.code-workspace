@@ -17,12 +17,22 @@
         //"C_Cpp.clang_format_path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\Llvm\\x64\\bin\\clang-format.exe",
         "editor.formatOnSave": true,
         "coverage-gutters.coverageFileNames": [
-            "coverage.windows.lcov.info",
-            "coverage.ubuntu.lcov.info"
+            "coverage.windows.clang.lcov.info",
+            "coverage.linux.clang.lcov.info"
         ],
         "coverage-gutters.showLineCoverage": true,
         "cmake.allowUnsupportedPresetsVersions": false,
         "cmake.launchBehavior": "breakAndReuseTerminal",
         "testMate.cpp.test.executables": "target/**/*{test}*",
+        "cmake.options.statusBarVisibility": "compact",
+        "cmake.outputLogEncoding": "utf8",
+        "debug.showVariableTypes": true,
     },
+    "extensions": {
+        "recommendations": [
+            "ms-vscode.cpptools-extension-pack",
+            "ryanluker.vscode-coverage-gutters",
+            "matepek.vscode-catch2-test-adapter"
+        ]
+    }
 }
