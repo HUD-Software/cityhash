@@ -548,7 +548,7 @@ uint128 CityHash128(const char *s, size_t len)
 /*
     _mm_crc32_u64 is not available in WASM (https://emscripten.org/docs/porting/simd.html)
 */
-#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && !defined(__x86_64__) && !defined(_M_X64)
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && defined(__x86_64__) && defined(_M_X64)
     #include <cityhash/citycrc.h>
     #include <nmmintrin.h>
 

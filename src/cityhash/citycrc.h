@@ -30,7 +30,7 @@
 
 #include "city.h"
 
-#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && !defined(__x86_64__) && !defined(_M_X64)
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && defined(__x86_64__) && defined(_M_X64)
 // Hash function for a byte array.
 uint128 CityHashCrc128(const char *s, size_t len);
 
