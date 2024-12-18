@@ -21,4 +21,4 @@ else()
 endif()
 
 target_compile_definitions(${lib_name} PRIVATE _DISABLE_VECTOR_ANNOTATION)
-
+target_compile_definitions(${lib_name} PRIVATE _DISABLE_STRING_ANNOTATION)

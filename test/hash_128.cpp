@@ -1,4 +1,4 @@
-#if defined(__SSE4_2__) && !defined(__wasm_simd128__)
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && !defined(__x86_64__) && !defined(_M_X64)
 
 constexpr uint128 CITY_HASH_128_RESULTS[1024] = {
     {0x3DF09DFC64C09A2B, 0x3CB540C392E51E29},

@@ -1,4 +1,4 @@
-#if defined(__SSE4_2__) && !defined(__wasm_simd128__)
+#if defined(__SSE4_2__) && !defined(__wasm_simd128__) && !defined(__x86_64__) && !defined(_M_X64)
 
 constexpr uint64 CITY_HASH_CRC_128_RESULTS[256][4] = {
     {
