@@ -64,27 +64,37 @@ target_compile_definitions(
 # Add project dependency
 target_link_libraries(${test_project_name} PRIVATE ${lib_name})
 
-# Add Google test dependency
-message("Fetching google-test...")
+# Add Catch2 test dependency
+message("Fetching Catch2...")
 include(FetchContent)
 FetchContent_Declare(
-	google_test 
-	GIT_REPOSITORY  https://github.com/google/googletest.git
-	GIT_TAG         v1.13.0
+	catch2 
+	GIT_REPOSITORY  https://github.com/catchorg/Catch2.git
+	GIT_TAG         v3.7.1
 )
-# set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-# set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCED)
-set(BUILD_GTEST ON CACHE BOOL "" FORCE)
-set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
-set(gtest_build_samples OFF CACHE BOOL "" FORCE)
-set(gtest_build_tests OFF CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(catch2)
+target_link_libraries( ${test_project_name} PRIVATE Catch2::Catch2 )
+add_test(NAME ${lib_name} COMMAND ${test_project_name} --success --reporter JUnit::out=${test_project_name}_report.xml)
+# Add Google test dependency
+# message("Fetching google-test...")
+# include(FetchContent)
+# FetchContent_Declare(
+# 	google_test 
+# 	GIT_REPOSITORY  https://github.com/google/googletest.git
+# 	GIT_TAG         v1.13.0
+# )
+# # set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+# # set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCED)
+# set(BUILD_GTEST ON CACHE BOOL "" FORCE)
+# set(BUILD_GMOCK OFF CACHE BOOL "" FORCE)
+# set(gtest_build_samples OFF CACHE BOOL "" FORCE)
+# set(gtest_build_tests OFF CACHE BOOL "" FORCE)
 
-FetchContent_MakeAvailable(google_test)
-target_link_libraries( ${test_project_name} PRIVATE gtest )
-#add_custom_command(TARGET ${test_project_name} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:gtest> $<TARGET_FILE_DIR:${test_project_name}>)
+# FetchContent_MakeAvailable(google_test)
+# target_link_libraries( ${test_project_name} PRIVATE gtest )
 
-# Add the executable test
-add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
+# # Add the executable test
+# add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
 
 if(SANITIZER)
 	include(../sanitizer.cmake)

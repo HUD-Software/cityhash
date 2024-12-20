@@ -1027,43 +1027,46 @@ constexpr uint64 CITY_HASH_CRC_128_RESULTS[256][4] = {
      },
 };
 
-GTEST_TEST(city_hash, hash_crc_256_from_null_ptr)
+TEST_CASE("CityHashCrc256")
 {
-    constexpr uint64 expected_result[4] = {0x95162F24E6A5F930, 0x6808BDF4F1EB06E0, 0xB3B1F3A67B624D82, 0xC9A62F12BD4CD80B};
-
-    uint64 result[4] = {0};
-    char s {0};
-    CityHashCrc256(&s, 0, result);
-    GTEST_ASSERT_EQ(result[0], expected_result[0]);
-    GTEST_ASSERT_EQ(result[1], expected_result[1]);
-    GTEST_ASSERT_EQ(result[2], expected_result[2]);
-    GTEST_ASSERT_EQ(result[3], expected_result[3]);
-}
-
-GTEST_TEST(city_hash, hash_crc_256_no_seed)
-{
-    char key[256] = {0};
-    for (int index = 0; index < 256; index++)
+    SECTION("zero size")
     {
-        key[index] = index;
-        uint64 result[4] = {0};
-        CityHashCrc256(key, index, result);
-        GTEST_ASSERT_EQ(result[0], CITY_HASH_CRC_128_RESULTS[index][0]);
-        GTEST_ASSERT_EQ(result[1], CITY_HASH_CRC_128_RESULTS[index][1]);
-        GTEST_ASSERT_EQ(result[2], CITY_HASH_CRC_128_RESULTS[index][2]);
-        GTEST_ASSERT_EQ(result[3], CITY_HASH_CRC_128_RESULTS[index][3]);
-    }
-}
+        constexpr uint64 expected_result[4] = {0x95162F24E6A5F930, 0x6808BDF4F1EB06E0, 0xB3B1F3A67B624D82, 0xC9A62F12BD4CD80B};
 
-GTEST_TEST(city_hash, hash_crc_256_from_str_lipsum)
-{
-    constexpr uint64 expected_result[4] = {0x78CBA68E16E7EE3F, 0xB4A4832CED7C0189, 0xAE1B425C6903552B, 0x283D71A63BDE9886};
-    uint64 result[4] = {0};
-    CityHashCrc256(LIPSUM, strlen(LIPSUM), result);
-    GTEST_ASSERT_EQ(result[0], expected_result[0]);
-    GTEST_ASSERT_EQ(result[1], expected_result[1]);
-    GTEST_ASSERT_EQ(result[2], expected_result[2]);
-    GTEST_ASSERT_EQ(result[3], expected_result[3]);
+        uint64 result[4] = {0};
+        char s {0};
+        CityHashCrc256(&s, 0, result);
+        REQUIRE(result[0] == expected_result[0]);
+        REQUIRE(result[1] == expected_result[1]);
+        REQUIRE(result[2] == expected_result[2]);
+        REQUIRE(result[3] == expected_result[3]);
+    }
+
+    SECTION("256 bytes growing values")
+    {
+        char key[256] = {0};
+        for (int index = 0; index < 256; index++)
+        {
+            key[index] = index;
+            uint64 result[4] = {0};
+            CityHashCrc256(key, index, result);
+            REQUIRE(result[0] == CITY_HASH_CRC_128_RESULTS[index][0]);
+            REQUIRE(result[1] == CITY_HASH_CRC_128_RESULTS[index][1]);
+            REQUIRE(result[2] == CITY_HASH_CRC_128_RESULTS[index][2]);
+            REQUIRE(result[3] == CITY_HASH_CRC_128_RESULTS[index][3]);
+        }
+    }
+
+    SECTION("lipsum")
+    {
+        constexpr uint64 expected_result[4] = {0x78CBA68E16E7EE3F, 0xB4A4832CED7C0189, 0xAE1B425C6903552B, 0x283D71A63BDE9886};
+        uint64 result[4] = {0};
+        CityHashCrc256(LIPSUM, strlen(LIPSUM), result);
+        REQUIRE(result[0] == expected_result[0]);
+        REQUIRE(result[1] == expected_result[1]);
+        REQUIRE(result[2] == expected_result[2]);
+        REQUIRE(result[3] == expected_result[3]);
+    }
 }
 
 #endif

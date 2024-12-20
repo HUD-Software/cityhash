@@ -23,22 +23,23 @@ constexpr unsigned int CITY_HASH_32_RESULTS[256] = {
     0x4fa36aaf, 0x4967e1ca, 0x6491ed46, 0x966e909f,
 };
 
-GTEST_TEST(city_hash, hash_32_from_null_ptr)
+TEST_CASE("CityHash32")
 {
-    GTEST_ASSERT_EQ(CityHash32(nullptr, 0), 0xDC56D17A);
-}
-
-GTEST_TEST(city_hash, hash_32_no_seed)
-{
-    char key[256] = {0};
-    for (int index = 0; index < 256; index++)
+    SECTION("nullptr")
     {
-        key[index] = index;
-        GTEST_ASSERT_EQ(CityHash32(key, index), CITY_HASH_32_RESULTS[index]);
+        REQUIRE(CityHash32(nullptr, 0) == 0xDC56D17A);
+    }
+    SECTION("256 bytes growing values")
+    {
+        char key[256] = {0};
+        for (int index = 0; index < 256; index++)
+        {
+            key[index] = index;
+            REQUIRE(CityHash32(key, index) == CITY_HASH_32_RESULTS[index]);
+        }
+    }
+    SECTION("lipsum")
+    {
+        REQUIRE(CityHash32(LIPSUM, strlen(LIPSUM)) == 0xAB8CCEB7);
     }
 }
-
-GTEST_TEST(city_hash, hash_32_from_str_lipsum)
-{
-    GTEST_ASSERT_EQ(CityHash32(LIPSUM, strlen(LIPSUM)), 0xAB8CCEB7);
-};

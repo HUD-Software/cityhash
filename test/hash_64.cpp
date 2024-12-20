@@ -35,7 +35,8 @@ constexpr unsigned long long CITY_HASH_64_RESULTS[256] = {
     0xce8854acea5e24b8, 0x27afb26b41020580, 0x9d25c68f8bcf1c3a, 0x805402644867c522, 0x41e8c5ffc4ea5d00, 0xcd81dd45d46e0c8d, 0xa8cdf8d8619a150e,
     0xd8caa106697706fb, 0x6a1406de52333f04, 0x619f36b7b1eb4599, 0xff8eecd0580401d2, 0xce75d7dd5a10eb0a, 0x0e0a9177ae74d947, 0xacf8b56059b2d479,
     0x21575fd3c592dbdc, 0x4aa4877e2e125fff, 0xbaea8c242d7282a1, 0xd5e260b93a603406, 0xa26b3c14f4a7523f, 0xf1bb64925dda14de, 0xee68f22335ac8309,
-    0xb9ddc15698504d79, 0xf99b26823feb8a52, 0xa794ae84547aaf93, 0x57466e1c585015b8};
+    0xb9ddc15698504d79, 0xf99b26823feb8a52, 0xa794ae84547aaf93, 0x57466e1c585015b8
+};
 
 constexpr unsigned long long CITY_HASH_64_WITH_SEED_RESULT[256] = {
     0x0000000000000000, 0x2aa4bfde585a7a03, 0xd9b5c24c3ba22b12, 0xc8fea18b638d9ee6, 0x9be507f794951290, 0x123c7bc6667cf71,  0xb6eb566efc602c9,
@@ -117,62 +118,66 @@ constexpr unsigned long long CITY_HASH_64_WITH_SEEDS_RESULT[256] = {
     0x1b8997244275878e, 0xb03841f41cf01232, 0x3b4dc5a3135dadcb, 0x2a623425a27eeda4,
 };
 
-GTEST_TEST(city_hash, hash_64_from_null_ptr)
+TEST_CASE("CityHash64")
 {
-    GTEST_ASSERT_EQ(CityHash64(nullptr, 0), 0x9AE16A3B2F90404F);
-}
 
-GTEST_TEST(city_hash, hash_64_with_seed_from_null_ptr)
-{
-    GTEST_ASSERT_EQ(CityHash64WithSeed(nullptr, 0, 0x5555555555555555), 0x843a9b9c18a444a2);
-}
-
-GTEST_TEST(city_hash, hash_64_with_seeds_from_null_ptr)
-{
-    GTEST_ASSERT_EQ(CityHash64WithSeeds(nullptr, 0, 0x5555555555555555, 0xAAAAAAAAAAAAAAAA), 0xc1ebecd2e7eb66d);
-}
-
-GTEST_TEST(city_hash, hash_64_no_seed)
-{
-    char key[256] = {0};
-    for (int index = 0; index < 256; index++)
+    SECTION("nullptr")
     {
-        key[index] = index;
-        GTEST_ASSERT_EQ(CityHash64(key, index), CITY_HASH_64_RESULTS[index]);
+        REQUIRE(CityHash64(nullptr, 0) == 0x9AE16A3B2F90404F);
+    }
+    SECTION("256 bytes growing values")
+    {
+        char key[256] = {0};
+        for (int index = 0; index < 256; index++)
+        {
+            key[index] = index;
+            REQUIRE(CityHash64(key, index) == CITY_HASH_64_RESULTS[index]);
+        }
+    }
+    SECTION("lipsum")
+    {
+        REQUIRE(CityHash64(LIPSUM, strlen(LIPSUM)) == 0x999ac74addcd6dc7);
     }
 }
 
-GTEST_TEST(city_hash, hash_64_with_seed)
+TEST_CASE("CityHash64WithSeed")
 {
-    char key[256] = {0};
-    for (int index = 0; index < 256; index++)
+    SECTION("nullptr")
     {
-        key[index] = index;
-        GTEST_ASSERT_EQ(CityHash64WithSeed(key, index, index), CITY_HASH_64_WITH_SEED_RESULT[index]);
+        REQUIRE(CityHash64WithSeed(nullptr, 0, 0x5555555555555555) == 0x843a9b9c18a444a2);
+    }
+    SECTION("256 bytes growing values")
+    {
+        char key[256] = {0};
+        for (int index = 0; index < 256; index++)
+        {
+            key[index] = index;
+            REQUIRE(CityHash64WithSeed(key, index, index) == CITY_HASH_64_WITH_SEED_RESULT[index]);
+        }
+    }
+    SECTION("lipsum")
+    {
+        REQUIRE(CityHash64WithSeed(LIPSUM, strlen(LIPSUM), 0x5555555555555555) == 0x6976f8f604619566);
     }
 }
 
-GTEST_TEST(city_hash, hash_64_with_seeds)
+TEST_CASE("CityHash64WithSeeds")
 {
-    char key[256] = {0};
-    for (int index = 0; index < 256; index++)
+    SECTION("nullptr")
     {
-        key[index] = index;
-        GTEST_ASSERT_EQ(CityHash64WithSeeds(key, index, index, 0xAAAAAAAAAAAAAAAA), CITY_HASH_64_WITH_SEEDS_RESULT[index]);
+        REQUIRE(CityHash64WithSeeds(nullptr, 0, 0x5555555555555555, 0xAAAAAAAAAAAAAAAA) == 0xc1ebecd2e7eb66d);
     }
-}
-
-GTEST_TEST(city_hash, hash_64_from_str_lipsum)
-{
-    GTEST_ASSERT_EQ(CityHash64(LIPSUM, strlen(LIPSUM)), 0x999ac74addcd6dc7);
-}
-
-GTEST_TEST(city_hash, hash_64_with_seed_from_str_lipsum)
-{
-    GTEST_ASSERT_EQ(CityHash64WithSeed(LIPSUM, strlen(LIPSUM), 0x5555555555555555), 0x6976f8f604619566);
-}
-
-GTEST_TEST(city_hash, hash_64_with_seeds_from_str_lipsum)
-{
-    GTEST_ASSERT_EQ(CityHash64WithSeeds(LIPSUM, strlen(LIPSUM), 0x5555555555555555, 0xAAAAAAAAAAAAAAAA), 0x716f9c1db5c27122);
+    SECTION("256 bytes growing values")
+    {
+        char key[256] = {0};
+        for (int index = 0; index < 256; index++)
+        {
+            key[index] = index;
+            REQUIRE(CityHash64WithSeeds(key, index, index, 0xAAAAAAAAAAAAAAAA) == CITY_HASH_64_WITH_SEEDS_RESULT[index]);
+        }
+    }
+    SECTION("lipsum")
+    {
+        REQUIRE(CityHash64WithSeeds(LIPSUM, strlen(LIPSUM), 0x5555555555555555, 0xAAAAAAAAAAAAAAAA) == 0x716f9c1db5c27122);
+    }
 }
