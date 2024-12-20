@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 set( src city.cc)
 
-set ( interface	cityhash/city.h)
+set ( interface	cityhash/city.h cityhash/citycrc.h)
 
 source_group( TREE ${CMAKE_SOURCE_DIR} FILES ${interface} ${src})
 
