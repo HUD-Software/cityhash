@@ -103,5 +103,5 @@ endif()
 
 if(COVERAGE)
 	include(../coverage.cmake)
-	enable_gcov_coverage(${test_project_name} ${lib_name})
+	enable_coverage(${test_project_name} ${lib_name})
 endif()
