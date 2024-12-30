@@ -155,20 +155,20 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 	add_custom_command( 
 		TARGET ${project_name} POST_BUILD
 		COMMAND echo Merge coverage info...
-		COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-profdata merge ${lib_name}.profraw -o ${lib_name}.profdata
+		COMMAND llvm-profdata merge ${lib_name}.profraw -o ${lib_name}.profdata
 	)
 
 	add_custom_command( 
 		TARGET ${project_name} POST_BUILD
 		COMMAND echo Show profraw...
-		COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-profdata show --all-functions ${lib_name}.profdata >> profraw.info.txt
+		COMMAND llvm-profdata show --all-functions ${lib_name}.profdata >> profraw.info.txt
 	)
 
 	add_custom_command( 
 		TARGET ${project_name} POST_BUILD
 		COMMAND echo Show coverage info...
 		COMMAND rm -f show.txt
-		COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-cov show ./${project_name} -instr-profile=${lib_name}.profdata --show-expansions >> show.txt
+		COMMAND llvm-cov show ./${project_name} -instr-profile=${lib_name}.profdata --show-expansions >> show.txt
 	)
 
 
