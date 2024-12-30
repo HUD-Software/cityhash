@@ -37,7 +37,7 @@ jobs:
       - name: Generate Unix Makfiles
         run: cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -Btarget -G "Unix Makefiles" -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake --build target --config Debug
+        run: cmake --build target
       - name: Upload coverage report to Codecov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
@@ -61,7 +61,7 @@ jobs:
       - name: Generate Unix Makfiles
         run: cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-12 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-12 -Btarget -G "Unix Makefiles" -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake --build target --config Debug
+        run: cmake --build target
       - name: Upload coverage report to Codecov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
