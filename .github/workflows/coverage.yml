@@ -13,7 +13,7 @@ jobs:
       - name: Generate visual Studio solution
         run: cmake.exe --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE "-DCMAKE_C_COMPILER:FILEPATH=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\x64\bin\clang-cl.exe" "-DCMAKE_CXX_COMPILER:FILEPATH=C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\Llvm\x64\bin\clang-cl.exe" -Btarget -G "Visual Studio 17 2022" -T ClangCL,host=x64 -A x64 -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake.exe --build target --config Debug
+        run: cmake.exe --build target --config Debug -j 16
       - name: Upload coverage report to Codecov
         run: |
           $ProgressPreference = 'SilentlyContinue'
@@ -25,7 +25,7 @@ jobs:
           name: coverage-windows-clang
           path: |
             target\test\coverage.windows.clang.lcov.info
-            target\test\windows\
+            target\test\windows-clang\
 
   coverage_windows_mingw:
     runs-on: windows-latest
@@ -35,7 +35,7 @@ jobs:
       - name: Generate visual Studio solution
         run: cmake.exe --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH="x86_64-w64-mingw32-gcc.exe" -DCMAKE_CXX_COMPILER:FILEPATH="x86_64-w64-mingw32-g++.exe" -Btarget -G "MinGW Makefiles" -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake.exe --build target --config Debug
+        run: cmake.exe --build target --config Debug -j 16
       - name: Upload coverage report to Codecov
         run: |
           $ProgressPreference = 'SilentlyContinue'
@@ -47,7 +47,7 @@ jobs:
           name: coverage-windows-mingw
           path: |
             target\test\coverage.windows.mingw.lcov.info
-            target\test\windows\
+            target\test\windows-mingw\
 
   coverage_linux_clang_14:
     runs-on: ubuntu-22.04
@@ -59,7 +59,7 @@ jobs:
       - name: Generate Unix Makfiles
         run: cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang-14 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++-14 -Btarget -G "Unix Makefiles" -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake --build target
+        run: cmake --build target -j 16
       - name: Upload coverage report to Codecov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
@@ -83,7 +83,7 @@ jobs:
       - name: Generate Unix Makfiles
         run: cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-12 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-12 -Btarget -G "Unix Makefiles" -DCOVERAGE:BOOL=ON
       - name: Build and test
-        run: cmake --build target
+        run: cmake --build target -j 16
       - name: Upload coverage report to Codecov
         run: |
           curl -Os https://uploader.codecov.io/latest/linux/codecov
