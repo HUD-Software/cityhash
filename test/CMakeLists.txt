@@ -28,8 +28,7 @@ if(MSVC)
 	target_compile_options( ${test_project_name} PRIVATE /Zc:__cplusplus /std:c++20 /bigobj /permissive- /EHsc /utf-8 /arch:AVX2)
 	target_compile_definitions(${test_project_name} PRIVATE __SSE4_2__)
 elseif(EMSCRIPTEN)
-	# Create an html
-	set(CMAKE_EXECUTABLE_SUFFIX ".html")
+	set_target_properties(${test_project_name} PROPERTIES SUFFIX ".html")
 	target_link_options(${test_project_name} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:-sASSERTIONS>)
 	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -msimd128 -std=c++20 )
 else()
@@ -87,7 +86,11 @@ target_link_libraries( ${test_project_name} PRIVATE gtest )
 #add_custom_command(TARGET ${test_project_name} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:gtest> $<TARGET_FILE_DIR:${test_project_name}>)
 
 # Add the executable test
-add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
+if(EMSCRIPTEN)
+	add_test(NAME ${lib_name} COMMAND node ${test_project_name}.js --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
+else()
+	add_test(NAME ${lib_name} COMMAND ${test_project_name} --gtest_output=xml:${test_project_name}_report.xml --extra-verbose --gtest_break_on_failure)
+endif()
 
 if(SANITIZER)
 	include(../sanitizer.cmake)
