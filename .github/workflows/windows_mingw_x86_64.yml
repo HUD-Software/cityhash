@@ -17,9 +17,9 @@ jobs:
       - name: Generate
         run: cmake.exe --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH="x86_64-w64-mingw32-gcc.exe" -DCMAKE_CXX_COMPILER:FILEPATH="x86_64-w64-mingw32-g++.exe" -Btarget -G "MinGW Makefiles"
       - name: Build
-        run: cmake --build target -- -j 16
+        run: cmake --build target -- -j 32
       - name: Test
-        run: ctest --test-dir target -j16 -C Release -T test --output-on-failure
+        run: ctest --test-dir target -C Release -T test --output-on-failure
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
@@ -29,11 +29,10 @@ jobs:
           reporter: java-junit
       - name: Release
         run: |
-          mkdir -p release
-          cp -R target/test/test_cityhash_report.xml release -i
-          cp -R target/src/*.a release -i
-          cp -R src/cityhash release/cityhash -i
-          cp -R src/cityhash release/test_cityhash.exe -i
+          xcopy target\test\test_cityhash_report.xml release\ /s /y
+          xcopy src\cityhash release\cityhash\ /s /y
+          xcopy target\src\*.a release\ /s /y
+          xcopy target\test\test_cityhash.exe release\ /s /y
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
