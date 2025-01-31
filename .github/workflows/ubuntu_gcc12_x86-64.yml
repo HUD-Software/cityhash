@@ -32,5 +32,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Ubuntu_gcc_12_x86_64
+          name: ubuntu_gcc_12_x86-64
           path: release/**

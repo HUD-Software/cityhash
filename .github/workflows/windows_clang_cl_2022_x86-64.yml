@@ -33,5 +33,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: windows_clang_x64
+          name: windows_clang_cl_2022_x86-64
           path: release\**
