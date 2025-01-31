@@ -21,11 +21,12 @@ jobs:
         if: success() || failure()
         with:
           name: Windows CityHash Test Report
-          path: target/test/test_*_report.xml
+          path: target/test/test_cityhash_report.xml
           reporter: java-junit
       - name: Release
         run: |
           xcopy target\test\Release release\ /s /y
+          xcopy target\test\test_cityhash_report.xml release\ /s /y
           xcopy target\src\Release release\ /s /y
           xcopy src\cityhash release\cityhash\ /s /y
       - name: Upload artifacts

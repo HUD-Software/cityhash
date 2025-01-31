@@ -28,7 +28,7 @@ jobs:
       #   if: success() || failure()
       #   with:
       #     name: Windows CityHash Test Report
-      #     path: target/test/test_*_report.xml
+      #     path: target/test/test_cityhash_report.xml
       #     reporter: java-junit
       - name: Release
         run: |
