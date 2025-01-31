@@ -28,6 +28,10 @@ if(MSVC)
 	target_compile_options( ${test_project_name} PRIVATE /Zc:__cplusplus /std:c++20 /bigobj /permissive- /EHsc /utf-8 /arch:AVX2)
 	target_compile_definitions(${test_project_name} PRIVATE __SSE4_2__)
 elseif(EMSCRIPTEN)
+	# Create an html
+	set(CMAKE_EXECUTABLE_SUFFIX ".html")
+	# Create JS and WASM
+	target_link_options(${test_project_name} PRIVATE "-sASSERTIONS")
 	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -msimd128 -std=c++20 )
 else()
  	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -std=c++20)
