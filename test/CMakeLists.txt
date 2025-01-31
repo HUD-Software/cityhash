@@ -30,8 +30,7 @@ if(MSVC)
 elseif(EMSCRIPTEN)
 	# Create an html
 	set(CMAKE_EXECUTABLE_SUFFIX ".html")
-	# Create JS and WASM
-	target_link_options(${test_project_name} PRIVATE "-sASSERTIONS")
+	target_link_options(${test_project_name} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:-sASSERTIONS>)
 	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -msimd128 -std=c++20 )
 else()
  	target_compile_options( ${test_project_name} PRIVATE -msse4.2 -std=c++20)
