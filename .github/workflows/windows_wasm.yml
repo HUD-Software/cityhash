@@ -37,7 +37,7 @@ jobs:
           xcopy target\src\libcityhash.a release\ /s /y
           xcopy src\cityhash release\cityhash\ /s /y
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3.1.1
+        uses: actions/upload-artifact@v4
         with:
           name: windows_webassembly
           path: release\**
