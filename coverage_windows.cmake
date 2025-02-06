@@ -11,7 +11,6 @@ function(enable_windows_coverage project_name lib_name)
 
         target_compile_options(${project_name} PRIVATE -fprofile-instr-generate -fcoverage-mapping)
         target_compile_options(${lib_name} PRIVATE -fprofile-instr-generate -fcoverage-mapping)
-        target_link_options(${project_name} PRIVATE --coverage)
         # Add clang lib path to libraries paths
         get_filename_component(CMAKE_CXX_COMPILER_PATH ${CMAKE_CXX_COMPILER} DIRECTORY)
         target_link_directories(${project_name} PRIVATE "${CMAKE_CXX_COMPILER_PATH}\\..\\lib\\clang\\${CMAKE_CXX_COMPILER_VERSION}\\lib\\windows\\")
@@ -35,17 +34,17 @@ function(enable_windows_coverage project_name lib_name)
             COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-profdata merge -sparse ${project_name}.profraw -o ${project_name}.profdata
         )
 
-        add_custom_command( 
-            TARGET ${project_name} POST_BUILD
-            COMMAND echo Show coverage info...
-            COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-cov report ./${VS_CONFIG}/${project_name}.exe -instr-profile=${project_name}.profdata -dump
-        )
+        # add_custom_command( 
+        #     TARGET ${project_name} POST_BUILD
+        #     COMMAND echo Show coverage info...
+        #     COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-cov report ./${VS_CONFIG}/${project_name}.exe -instr-profile=${project_name}.profdata -dump
+        # )
 
-        add_custom_command( 
-            TARGET ${project_name} POST_BUILD
-            COMMAND echo Show coverage info...
-            COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-cov show ./${VS_CONFIG}/${project_name}.exe -instr-profile=${project_name}.profdata --show-expansions >> show.txt
-        )
+        # add_custom_command( 
+        #     TARGET ${project_name} POST_BUILD
+        #     COMMAND echo Show coverage info...
+        #     COMMAND ${CMAKE_CXX_COMPILER_PATH}/llvm-cov show ./${VS_CONFIG}/${project_name}.exe -instr-profile=${project_name}.profdata --show-expansions >> show.txt
+        # )
 
         file(REMOVE coverage.windows.clang.lcov.info)
         add_custom_command( 
